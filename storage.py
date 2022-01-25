@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-
+import os
 
 class MongodbService(object):
     _instance = None
@@ -14,7 +14,7 @@ class MongodbService(object):
         return cls._instance
 
     def __init__(self):
-        self._client = MongoClient("localhost", 27017)
+        self._client = MongoClient(os.environ.get('MONGODB_HOST', 'localhost'))
         self._db = self._client.youtube_db
 
     def get_data(self):

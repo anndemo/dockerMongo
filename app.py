@@ -5,14 +5,18 @@ from storage import MongodbService
 
 storage = MongodbService.get_instance()
 
-for _ in range(5):
-    dto = {
+print("Zero!!!")
+
+
+for row in range(5):
+    hello = {
         "_id": str(uuid4()),
-        "payload": str(uuid4()),
-        "field2": str(int(time.time()))
+        "time": str(int(time.time())),
+        "string": f"Hello, {row} times!"
     }
-    storage.save_data(dto)
+    storage.save_data(hello)
 
-
+num = 0
 for data in storage.get_data():
-    print(data)
+    num += 1
+    print(data['string'])
