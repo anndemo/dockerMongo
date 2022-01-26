@@ -1,6 +1,6 @@
 import time
 from uuid import uuid4
-from storage import MongodbService
+from storage import MongodbService, os
 
 
 storage = MongodbService.get_instance()
@@ -8,7 +8,7 @@ storage = MongodbService.get_instance()
 print("Zero!!!")
 
 
-for row in range(5):
+for row in range(10):
     hello = {
         "_id": str(uuid4()),
         "time": str(int(time.time())),
@@ -16,7 +16,9 @@ for row in range(5):
     }
     storage.save_data(hello)
 
-num = 0
-for data in storage.get_data():
+num = int(os.environ.get("NUMBER"))
+
+for i, data in zip(range(num), storage.get_data()):
     num += 1
     print(data['string'])
+

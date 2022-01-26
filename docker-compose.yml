@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       MONGODB_HOST: mongodb
+      NUMBER: 4
   mongodb:
     image: mongo:latest
     ports:
