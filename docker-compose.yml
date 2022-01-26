@@ -5,6 +5,8 @@ services:
     environment:
       MONGODB_HOST: mongodb
       NUMBER: 4
+    volumes:
+      - "/Users/anndemo/PycharmProjects/dockerMongo:/app"
   mongodb:
     image: mongo:latest
     ports:
